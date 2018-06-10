@@ -17,6 +17,8 @@ static void glfw_error_callback(int error, const char* description)
 
 int main(int, char**)
 {
+	glfwInit ();
+	
     // Setup window
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit())
@@ -30,6 +32,12 @@ int main(int, char**)
     GLFWwindow* window = glfwCreateWindow(1280, 720, "ImGui GLFW+OpenGL3 example", NULL, NULL);
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1); // Enable vsync
+
+	if (!gladLoadGLLoader ((GLADloadproc)glfwGetProcAddress))
+	{
+		fprintf (stderr, "Failed to initialize GLAD\n");
+		return 1;
+	}
 
     // Setup Dear ImGui binding
     IMGUI_CHECKVERSION();
