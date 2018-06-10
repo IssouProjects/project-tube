@@ -1,0 +1,18 @@
+language: cpp
+
+sudo: required
+
+compiler: gcc
+
+before_install:
+  - sudo apt-get install xorg-dev
+
+install:
+  - mkdir build && cd build
+
+script:
+  - cmake ..
+  - make
+
+notifications:
+  email: false
