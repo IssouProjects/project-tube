@@ -67,4 +67,19 @@ target_include_directories("glad" PRIVATE "${KHR_DIR}/include")
 target_include_directories(${PROJECT_NAME} PRIVATE "${KHR_DIR}/include")
 set_target_properties("glad" PROPERTIES FOLDER "Libraries")
 
+#imgui
+set(IMGUI_DIR "${LIB_DIR}/imgui/")
+file(GLOB IMGUI_SOURCE_FILES "${IMGUI_DIR}*.cpp")
+file(GLOB IMGUI_HEADER_FILES "${IMGUI_DIR}*.h" "${IMGUI_DIR}*.hpp")
+add_library("imgui" ${IMGUI_SOURCE_FILES})
+target_include_directories("imgui" PRIVATE "${GLAD_DIR}/include")
+target_include_directories("imgui" PRIVATE "${KHR_DIR}/include")
+target_include_directories("imgui" PRIVATE "${IMGUI_DIR}")
+target_include_directories(${PROJECT_NAME} PRIVATE "${IMGUI_DIR}")
+set(KHR_DIR "${LIB_DIR}/KHR")
+target_link_libraries("imgui" "glad" "${CMAKE_DL_LIBS}")
+target_link_libraries("imgui" glfw ${GLFW_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} "imgui" "${CMAKE_DL_LIBS}")
+set_target_properties(imgui PROPERTIES FOLDER "Libraries")
+
 
