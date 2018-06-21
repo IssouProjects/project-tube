@@ -1,6 +1,7 @@
 ﻿## Custom
 build/
 bin/
+doc/
 
 ## C++ specific
 # Prerequisites
